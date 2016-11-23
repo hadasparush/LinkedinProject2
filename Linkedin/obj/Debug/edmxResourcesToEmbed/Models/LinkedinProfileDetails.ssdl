@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserProfileModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ProfileDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="currentTitle" Type="varchar(max)" />
+    <Property Name="CurrentPosition" Type="varchar(max)" />
+    <Property Name="Summary" Type="varchar(max)" />
+    <Property Name="Score" Type="int" />
+  </EntityType>
+  <EntityType Name="ProfileEducation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ProfileID" Type="int" Nullable="false" />
+    <Property Name="Education" Type="varchar(max)" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileExperience">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ProfileID" Type="int" Nullable="false" />
+    <Property Name="Experience" Type="varchar(max)" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileSkills">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ProfileID" Type="int" Nullable="false" />
+    <Property Name="skill" Type="varchar(max)" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ProfileEducation_ToProfileDetails">
+    <End Role="ProfileDetails" Type="Self.ProfileDetails" Multiplicity="1" />
+    <End Role="ProfileEducation" Type="Self.ProfileEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileEducation">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileExperience_ToProfileDetails">
+    <End Role="ProfileDetails" Type="Self.ProfileDetails" Multiplicity="1" />
+    <End Role="ProfileExperience" Type="Self.ProfileExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileExperience">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileSkills_ToProfileDetails">
+    <End Role="ProfileDetails" Type="Self.ProfileDetails" Multiplicity="1" />
+    <End Role="ProfileSkills" Type="Self.ProfileSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileSkills">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UserProfileModelStoreContainer">
+    <EntitySet Name="ProfileDetails" EntityType="Self.ProfileDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProfileEducation" EntityType="Self.ProfileEducation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProfileExperience" EntityType="Self.ProfileExperience" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProfileSkills" EntityType="Self.ProfileSkills" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ProfileEducation_ToProfileDetails" Association="Self.FK_ProfileEducation_ToProfileDetails">
+      <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+      <End Role="ProfileEducation" EntitySet="ProfileEducation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileExperience_ToProfileDetails" Association="Self.FK_ProfileExperience_ToProfileDetails">
+      <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+      <End Role="ProfileExperience" EntitySet="ProfileExperience" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileSkills_ToProfileDetails" Association="Self.FK_ProfileSkills_ToProfileDetails">
+      <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+      <End Role="ProfileSkills" EntitySet="ProfileSkills" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ca973b74669a4154a032f5eb268ff94a" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="UserProfileModel.ProfileDetails" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UserProfileModel.ProfileEducation" Width="1.5" PointX="4.375" PointY="5" />
+        <EntityTypeShape EntityType="UserProfileModel.ProfileExperience" Width="1.5" PointX="3.375" PointY="7.125" />
+        <EntityTypeShape EntityType="UserProfileModel.ProfileSkills" Width="1.5" PointX="3" PointY="9.125" />
+        <AssociationConnector Association="UserProfileModel.FK_ProfileEducation_ToProfileDetails" />
+        <AssociationConnector Association="UserProfileModel.FK_ProfileExperience_ToProfileDetails" />
+        <AssociationConnector Association="UserProfileModel.FK_ProfileSkills_ToProfileDetails" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

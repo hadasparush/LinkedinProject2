@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="UserProfileModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ProfileDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="currentTitle" Type="varchar(max)" />
+          <Property Name="CurrentPosition" Type="varchar(max)" />
+          <Property Name="Summary" Type="varchar(max)" />
+          <Property Name="Score" Type="int" />
+        </EntityType>
+        <EntityType Name="ProfileEducation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProfileID" Type="int" Nullable="false" />
+          <Property Name="Education" Type="varchar(max)" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileExperience">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProfileID" Type="int" Nullable="false" />
+          <Property Name="Experience" Type="varchar(max)" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileSkills">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProfileID" Type="int" Nullable="false" />
+          <Property Name="skill" Type="varchar(max)" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProfileEducation_ToProfileDetails">
+          <End Role="ProfileDetails" Type="Self.ProfileDetails" Multiplicity="1" />
+          <End Role="ProfileEducation" Type="Self.ProfileEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileEducation">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileExperience_ToProfileDetails">
+          <End Role="ProfileDetails" Type="Self.ProfileDetails" Multiplicity="1" />
+          <End Role="ProfileExperience" Type="Self.ProfileExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileExperience">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileSkills_ToProfileDetails">
+          <End Role="ProfileDetails" Type="Self.ProfileDetails" Multiplicity="1" />
+          <End Role="ProfileSkills" Type="Self.ProfileSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileSkills">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UserProfileModelStoreContainer">
+          <EntitySet Name="ProfileDetails" EntityType="Self.ProfileDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileEducation" EntityType="Self.ProfileEducation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileExperience" EntityType="Self.ProfileExperience" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProfileSkills" EntityType="Self.ProfileSkills" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProfileEducation_ToProfileDetails" Association="Self.FK_ProfileEducation_ToProfileDetails">
+            <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+            <End Role="ProfileEducation" EntitySet="ProfileEducation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileExperience_ToProfileDetails" Association="Self.FK_ProfileExperience_ToProfileDetails">
+            <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+            <End Role="ProfileExperience" EntitySet="ProfileExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileSkills_ToProfileDetails" Association="Self.FK_ProfileSkills_ToProfileDetails">
+            <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+            <End Role="ProfileSkills" EntitySet="ProfileSkills" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UserProfileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ProfileDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="currentTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CurrentPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProfileEducation" Relationship="UserProfileModel.FK_ProfileEducation_ToProfileDetails" FromRole="ProfileDetails" ToRole="ProfileEducation" />
+          <NavigationProperty Name="ProfileExperience" Relationship="UserProfileModel.FK_ProfileExperience_ToProfileDetails" FromRole="ProfileDetails" ToRole="ProfileExperience" />
+          <NavigationProperty Name="ProfileSkills" Relationship="UserProfileModel.FK_ProfileSkills_ToProfileDetails" FromRole="ProfileDetails" ToRole="ProfileSkills" />
+          <Property Name="Score" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="UserProfileEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ProfileDetails" EntityType="Self.ProfileDetails" />
+          <EntitySet Name="ProfileEducation" EntityType="UserProfileModel.ProfileEducation" />
+          <EntitySet Name="ProfileExperience" EntityType="UserProfileModel.ProfileExperience" />
+          <EntitySet Name="ProfileSkills" EntityType="UserProfileModel.ProfileSkills" />
+          <AssociationSet Name="FK_ProfileEducation_ToProfileDetails" Association="UserProfileModel.FK_ProfileEducation_ToProfileDetails">
+            <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+            <End Role="ProfileEducation" EntitySet="ProfileEducation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileExperience_ToProfileDetails" Association="UserProfileModel.FK_ProfileExperience_ToProfileDetails">
+            <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+            <End Role="ProfileExperience" EntitySet="ProfileExperience" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProfileSkills_ToProfileDetails" Association="UserProfileModel.FK_ProfileSkills_ToProfileDetails">
+            <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+            <End Role="ProfileSkills" EntitySet="ProfileSkills" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ProfileEducation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProfileID" Type="Int32" Nullable="false" />
+          <Property Name="Education" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProfileDetails" Relationship="UserProfileModel.FK_ProfileEducation_ToProfileDetails" FromRole="ProfileEducation" ToRole="ProfileDetails" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileExperience">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProfileID" Type="Int32" Nullable="false" />
+          <Property Name="Experience" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProfileDetails" Relationship="UserProfileModel.FK_ProfileExperience_ToProfileDetails" FromRole="ProfileExperience" ToRole="ProfileDetails" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProfileSkills">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ProfileID" Type="Int32" Nullable="false" />
+          <Property Name="skill" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProfileDetails" Relationship="UserProfileModel.FK_ProfileSkills_ToProfileDetails" FromRole="ProfileSkills" ToRole="ProfileDetails" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProfileEducation_ToProfileDetails">
+          <End Type="UserProfileModel.ProfileDetails" Role="ProfileDetails" Multiplicity="1" />
+          <End Type="UserProfileModel.ProfileEducation" Role="ProfileEducation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileEducation">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileExperience_ToProfileDetails">
+          <End Type="UserProfileModel.ProfileDetails" Role="ProfileDetails" Multiplicity="1" />
+          <End Type="UserProfileModel.ProfileExperience" Role="ProfileExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileExperience">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProfileSkills_ToProfileDetails">
+          <End Type="UserProfileModel.ProfileDetails" Role="ProfileDetails" Multiplicity="1" />
+          <End Type="UserProfileModel.ProfileSkills" Role="ProfileSkills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProfileDetails">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProfileSkills">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UserProfileModelStoreContainer" CdmEntityContainer="UserProfileEntities">
+          <EntitySetMapping Name="ProfileDetails">
+            <EntityTypeMapping TypeName="UserProfileModel.ProfileDetails">
+              <MappingFragment StoreEntitySet="ProfileDetails">
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="CurrentPosition" ColumnName="CurrentPosition" />
+                <ScalarProperty Name="currentTitle" ColumnName="currentTitle" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileEducation">
+            <EntityTypeMapping TypeName="UserProfileModel.ProfileEducation">
+              <MappingFragment StoreEntitySet="ProfileEducation">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Education" ColumnName="Education" />
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileExperience">
+            <EntityTypeMapping TypeName="UserProfileModel.ProfileExperience">
+              <MappingFragment StoreEntitySet="ProfileExperience">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProfileSkills">
+            <EntityTypeMapping TypeName="UserProfileModel.ProfileSkills">
+              <MappingFragment StoreEntitySet="ProfileSkills">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="skill" ColumnName="skill" />
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

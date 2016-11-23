@@ -1,0 +1,5 @@
+C:\Users\aya\Documents\Visual Studio 2015\Projects\LinkedinProject\LinkedinProfileDB\bin\Debug\LinkedinProfileDB.dacpac
+C:\Users\aya\Documents\Visual Studio 2015\Projects\LinkedinProject\LinkedinProfileDB\bin\Debug\LinkedinProfileDB.dll
+C:\Users\aya\Documents\Visual Studio 2015\Projects\LinkedinProject\LinkedinProfileDB\bin\Debug\LinkedinProfileDB.pdb
+C:\Users\aya\Documents\Visual Studio 2015\Projects\LinkedinProject\LinkedinProfileDB\obj\Debug\LinkedinProfileDB.dll
+C:\Users\aya\Documents\Visual Studio 2015\Projects\LinkedinProject\LinkedinProfileDB\obj\Debug\LinkedinProfileDB.pdb

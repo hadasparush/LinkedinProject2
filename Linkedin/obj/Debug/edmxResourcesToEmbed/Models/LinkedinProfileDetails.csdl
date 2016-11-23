@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="UserProfileModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ProfileDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="currentTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProfileEducation" Relationship="UserProfileModel.FK_ProfileEducation_ToProfileDetails" FromRole="ProfileDetails" ToRole="ProfileEducation" />
+    <NavigationProperty Name="ProfileExperience" Relationship="UserProfileModel.FK_ProfileExperience_ToProfileDetails" FromRole="ProfileDetails" ToRole="ProfileExperience" />
+    <NavigationProperty Name="ProfileSkills" Relationship="UserProfileModel.FK_ProfileSkills_ToProfileDetails" FromRole="ProfileDetails" ToRole="ProfileSkills" />
+    <Property Name="Score" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="UserProfileEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ProfileDetails" EntityType="Self.ProfileDetails" />
+    <EntitySet Name="ProfileEducation" EntityType="UserProfileModel.ProfileEducation" />
+    <EntitySet Name="ProfileExperience" EntityType="UserProfileModel.ProfileExperience" />
+    <EntitySet Name="ProfileSkills" EntityType="UserProfileModel.ProfileSkills" />
+    <AssociationSet Name="FK_ProfileEducation_ToProfileDetails" Association="UserProfileModel.FK_ProfileEducation_ToProfileDetails">
+      <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+      <End Role="ProfileEducation" EntitySet="ProfileEducation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileExperience_ToProfileDetails" Association="UserProfileModel.FK_ProfileExperience_ToProfileDetails">
+      <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+      <End Role="ProfileExperience" EntitySet="ProfileExperience" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProfileSkills_ToProfileDetails" Association="UserProfileModel.FK_ProfileSkills_ToProfileDetails">
+      <End Role="ProfileDetails" EntitySet="ProfileDetails" />
+      <End Role="ProfileSkills" EntitySet="ProfileSkills" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="ProfileEducation">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ProfileID" Type="Int32" Nullable="false" />
+    <Property Name="Education" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProfileDetails" Relationship="UserProfileModel.FK_ProfileEducation_ToProfileDetails" FromRole="ProfileEducation" ToRole="ProfileDetails" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileExperience">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ProfileID" Type="Int32" Nullable="false" />
+    <Property Name="Experience" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProfileDetails" Relationship="UserProfileModel.FK_ProfileExperience_ToProfileDetails" FromRole="ProfileExperience" ToRole="ProfileDetails" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileSkills">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ProfileID" Type="Int32" Nullable="false" />
+    <Property Name="skill" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProfileDetails" Relationship="UserProfileModel.FK_ProfileSkills_ToProfileDetails" FromRole="ProfileSkills" ToRole="ProfileDetails" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ProfileEducation_ToProfileDetails">
+    <End Type="UserProfileModel.ProfileDetails" Role="ProfileDetails" Multiplicity="1" />
+    <End Type="UserProfileModel.ProfileEducation" Role="ProfileEducation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileEducation">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileExperience_ToProfileDetails">
+    <End Type="UserProfileModel.ProfileDetails" Role="ProfileDetails" Multiplicity="1" />
+    <End Type="UserProfileModel.ProfileExperience" Role="ProfileExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileExperience">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProfileSkills_ToProfileDetails">
+    <End Type="UserProfileModel.ProfileDetails" Role="ProfileDetails" Multiplicity="1" />
+    <End Type="UserProfileModel.ProfileSkills" Role="ProfileSkills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProfileDetails">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProfileSkills">
+        <PropertyRef Name="ProfileID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

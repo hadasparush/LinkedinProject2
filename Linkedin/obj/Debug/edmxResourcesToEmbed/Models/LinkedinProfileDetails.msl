@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserProfileModelStoreContainer" CdmEntityContainer="UserProfileEntities">
+    <EntitySetMapping Name="ProfileDetails">
+      <EntityTypeMapping TypeName="UserProfileModel.ProfileDetails">
+        <MappingFragment StoreEntitySet="ProfileDetails">
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="Summary" ColumnName="Summary" />
+          <ScalarProperty Name="CurrentPosition" ColumnName="CurrentPosition" />
+          <ScalarProperty Name="currentTitle" ColumnName="currentTitle" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileEducation">
+      <EntityTypeMapping TypeName="UserProfileModel.ProfileEducation">
+        <MappingFragment StoreEntitySet="ProfileEducation">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileExperience">
+      <EntityTypeMapping TypeName="UserProfileModel.ProfileExperience">
+        <MappingFragment StoreEntitySet="ProfileExperience">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileSkills">
+      <EntityTypeMapping TypeName="UserProfileModel.ProfileSkills">
+        <MappingFragment StoreEntitySet="ProfileSkills">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="skill" ColumnName="skill" />
+          <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
